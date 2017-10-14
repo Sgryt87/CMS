@@ -12,4 +12,3 @@ if(!$connection) {
     die('Connection failed' . mysqli_error($connection));
 }
 
-//$query = "SELECT * FROM cms"
