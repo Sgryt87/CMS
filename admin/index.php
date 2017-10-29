@@ -144,6 +144,19 @@
                 </div>
             </div>
             <!-- /.row -->
+            <?php
+            $query = "SELECT * FROM posts WHERE post_status = 'draft'";
+            $select_all_draft_post = mysqli_query($connection, $query);
+            $post_draft_counts = mysqli_num_rows($select_all_draft_post);
+
+            $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
+            $unapproved_comments_query = mysqli_query($connection, $query);
+            $unapproved_comments_counts = mysqli_num_rows($unapproved_comments_query);
+
+            $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
+            $select_all_subscribers = mysqli_query($connection, $query);
+            $subscriber_counts = mysqli_num_rows($select_all_subscribers);
+            ?>
             <!--charts-->
             <div class="row">
                 <script type="text/javascript">
@@ -155,11 +168,11 @@
                             ['Data', 'Count'],
                             <?php
 
-                            $elements_text = ['Active Posts', 'Categories', 'Users', 'Comments'];
-                            $elements_count = [$post_counts, $categories_counts, $users_counts, $comments_counts];
+                            $elements_text = ['Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers Count', 'Categories'];
+                            $elements_count = [$post_counts, $post_draft_counts, $comments_counts, $unapproved_comments_counts, $users_counts, $subscriber_counts, $categories_counts];
 
-//                      echo "     $.getJSON($elements_count[$post_counts]) ";
-                            for ($i = 0; $i < 4; $i++) {
+                            $arr_length = count($elements_count);
+                            for ($i = 0; $i < $arr_length; $i++) {
                                 echo "['{$elements_text[$i]}'" . "," . "{$elements_count[$i]}],";
                             }
                             ?>
