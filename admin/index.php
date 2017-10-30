@@ -145,6 +145,11 @@
             </div>
             <!-- /.row -->
             <?php
+            $query = "SELECT * FROM posts WHERE post_status = 'published'";
+            $select_all_published_post = mysqli_query($connection, $query);
+            $post_published_counts = mysqli_num_rows($select_all_published_post);
+
+
             $query = "SELECT * FROM posts WHERE post_status = 'draft'";
             $select_all_draft_post = mysqli_query($connection, $query);
             $post_draft_counts = mysqli_num_rows($select_all_draft_post);
@@ -168,8 +173,8 @@
                             ['Data', 'Count'],
                             <?php
 
-                            $elements_text = ['Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers Count', 'Categories'];
-                            $elements_count = [$post_counts, $post_draft_counts, $comments_counts, $unapproved_comments_counts, $users_counts, $subscriber_counts, $categories_counts];
+                            $elements_text = ['All Posts','Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers Count', 'Categories'];
+                            $elements_count = [$post_counts, $post_published_counts, $post_draft_counts, $comments_counts, $unapproved_comments_counts, $users_counts, $subscriber_counts, $categories_counts];
 
                             $arr_length = count($elements_count);
                             for ($i = 0; $i < $arr_length; $i++) {

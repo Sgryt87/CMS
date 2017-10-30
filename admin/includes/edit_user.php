@@ -11,7 +11,7 @@ if (isset($_GET['edit_user'])) {
     while ($row = mysqli_fetch_assoc($select_users_query)) {
 
         $user_id = $row['user_id'];
-        echo $username = $row['username'];
+        $username = $row['username'];
         $user_password = $row['user_password'];
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
