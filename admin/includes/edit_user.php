@@ -39,13 +39,23 @@ if (isset($_POST['edit_user'])) {
 //    move_uploaded_file($post_image_temp, "../images/$post_image");
 //
 //
+    $query = "SELECT randSalt FROM users";
+    $select_randomsalt_query = mysqli_query($connection, $query);
+    if(!$select_randomsalt_query) {
+        die('Query Failed' .mysqli_error($connection));
+    }
+    $row = mysqli_fetch_assoc($select_randomsalt_query);
+    $salt = $row['randSalt'];
+    $hashed_password = crypt($user_password, $salt);
+
+
     $query = "UPDATE users SET
           user_firstname ='{$user_firstname}',
           user_lastname = '{$user_lastname}',
           user_role = '{$user_role}',
           username = '{$username}',
           user_email = '{$user_email}',
-          user_password = '{$user_password}'
+          user_password = '{$hashed_password}'
           WHERE user_id = {$the_user_id}";
 
 //if (empty($post_image)) {
@@ -54,7 +64,10 @@ if (isset($_POST['edit_user'])) {
 //    confirmQuery($select_post_image);
     $edit_user_query = mysqli_query($connection, $query);
     confirmQuery($edit_user_query);
+    echo "<p class='bg-success'>User Updated " . "<a href='users.php'>View Users</a></p>";
 }
+
+
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -70,7 +83,7 @@ if (isset($_POST['edit_user'])) {
 
     <div class="form-group">
         <select name="user_role" id="">
-            <option value="subscriber"><?php echo $user_role; ?></option>
+            <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
             <?php
             if ($user_role == 'admin') {
                 echo "<option value='subscriber'>subscriber</option>";
