@@ -11,6 +11,7 @@
 
     <title>Blog Home - Start Bootstrap Template</title>
 
+    <link href="css/styles.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 

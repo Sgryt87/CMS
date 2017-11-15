@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_role'])) {
     <meta name="author" content="">
 
     <title>SB Admin - Bootstrap Admin Template</title>
-
+    <link href="css/styles.css" rel="stylesheet">
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
