@@ -18,6 +18,8 @@ if (isset($_POST['create_user'])) {
 //    move_uploaded_file($post_image_temp, "../images/$post_image");
 //
 //
+    $password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 10));
+
     $query = "INSERT INTO users(
               user_firstname,
               user_lastname,
@@ -31,7 +33,7 @@ if (isset($_POST['create_user'])) {
             '{$user_role}',
             '{$username}',
             '{$user_email}',
-            '{$user_password}')";
+            '{$password}')";
     $create_user_query = mysqli_query($connection, $query);
 
     confirmQuery($create_user_query);
