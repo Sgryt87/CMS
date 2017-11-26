@@ -13,7 +13,7 @@
         <div class="col-md-8">
             <!--pagination-->
             <?php
-            $per_page = 1;
+            $per_page = 4;
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
             } else {
