@@ -12,3 +12,6 @@ if(!$connection) {
     die('Connection failed' . mysqli_error($connection));
 }
 
+$query = "SET NAMES utf8";
+mysqli_query($connection, $query);
+

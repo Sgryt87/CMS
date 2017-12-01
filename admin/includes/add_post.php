@@ -3,7 +3,7 @@
 if (isset($_POST['create_post'])) {
 
     $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
+    $post_user = $_POST['post_user'];
     $post_category_id = $_POST['post_category_id'];
     $post_status = $_POST['post_status'];
 
@@ -20,7 +20,7 @@ if (isset($_POST['create_post'])) {
     $query = "INSERT INTO posts(
               post_category_id,
               post_title,
-              post_author,
+              post_user,
               post_date,
               post_image,
               post_content,
@@ -29,7 +29,7 @@ if (isset($_POST['create_post'])) {
               VALUES (
             '{$post_category_id}',
             '{$post_title}',
-            '{$post_author}',
+            '{$post_user}',
             now(),
             '{$post_image}',
             '{$post_content}',
@@ -51,6 +51,7 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
+        <label for="category">Category</label>
         <select name="post_category_id" id="">
             <?php
             $query = "SELECT * FROM categories";
@@ -66,9 +67,25 @@ if (isset($_POST['create_post'])) {
         </select>
     </div>
 
+    <!--    <div class="form-group">-->
+    <!--        <label for="author">Post Author</label>-->
+    <!--        <input type="text" class="form-control" name="author">-->
+    <!--    </div>-->
     <div class="form-group">
-        <label for="author">Post Author</label>
-        <input type="text" class="form-control" name="author">
+        <label for="post_user">Users</label>
+        <select name="post_user" id="">
+            <?php
+            $query = "SELECT * FROM users";
+            $select_users = mysqli_query($connection, $query);
+            //            confirmQuery($select_author);
+            while ($row = mysqli_fetch_assoc($select_users)) {
+                $user_id = $row['user_id'];
+                $username = $row['username'];
+
+                echo "<option value='{$username}'>{$username}</option>";
+            }
+            ?>
+        </select>
     </div>
 
     <div class="form-group">
