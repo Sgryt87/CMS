@@ -2,7 +2,6 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navigation.php'; ?>
 
-
 <!-- Page Content -->
 <div class="container">
 
@@ -14,7 +13,7 @@
             <?php
 
             if (isset($_POST['submit'])) {
-                echo $search = $_POST['search'];
+                echo $search = escape($_POST['search']);
 
                 $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
                 $search_query = mysqli_query($connection, $query);

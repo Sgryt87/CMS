@@ -2,7 +2,7 @@
 
 <?php
 if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+    $username = escape($_SESSION['username']);
 
     $query = "SELECT * FROM users WHERE username = '{$username}'";
     $select_user_profile_query = mysqli_query($connection, $query);
@@ -24,16 +24,16 @@ if (isset($_SESSION['username'])) {
 <?php
 if (isset($_POST['edit_user'])) {
 
-    $user_firstname = $_POST['user_firstname'];
-    $user_lastname = $_POST['user_lastname'];
-    $user_role = $_POST['user_role'];
+    $user_firstname = escape($_POST['user_firstname']);
+    $user_lastname = escape($_POST['user_lastname']);
+    $user_role = escape($_POST['user_role']);
 
 //    $post_image = $_FILES['image']['name'];
 //    $post_image_temp = $_FILES['image']['tmp_name'];
 
-    $username = $_POST['username'];
-    $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
+    $username = escape($_POST['username']);
+    $user_email = escape($_POST['user_email']);
+    $user_password = escape($_POST['user_password']);
 //    $post_date = date('d-m-y');
 
 

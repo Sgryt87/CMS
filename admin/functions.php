@@ -1,5 +1,6 @@
 <?php
 
+
 function confirmQuery($result)
 {
     global $connection;

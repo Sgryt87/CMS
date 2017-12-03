@@ -18,7 +18,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Welcome to admin
-                        <small><?php echo $_SESSION['username']; ?></small>
+                        <small><?php echo escape($_SESSION['username']); ?></small>
                     </h1>
                 </div>
             </div>

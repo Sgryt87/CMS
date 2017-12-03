@@ -19,7 +19,7 @@
                     </h1>
                     <?php
                     if (isset($_GET['source'])) {
-                        $source = $_GET['source'];
+                        $source = escape($_GET['source']);
                     } else {
                         $source = '';
                     }

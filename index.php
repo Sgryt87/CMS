@@ -1,7 +1,6 @@
 <?php include 'includes/db.php'; ?>
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navigation.php'; ?>
-<?php //session_start(); ?>
 
 
 <!-- Page Content -->
@@ -15,7 +14,7 @@
             <?php
             $per_page = 4;
             if (isset($_GET['page'])) {
-                $page = $_GET['page'];
+                $page = escape($_GET['page']);
             } else {
                 $page = "";
             }
