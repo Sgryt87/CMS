@@ -68,7 +68,7 @@ if (isset($_GET['edit_user'])) {
 
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="author">First Name</label>
+        <label for="user_firstname">First Name</label>
         <input type="text" class="form-control" value="<?php echo $user_firstname; ?>" name="user_firstname">
     </div>
 
@@ -110,7 +110,7 @@ if (isset($_GET['edit_user'])) {
 
     <div class="form-group">
         <label for="post_content">Password</label>
-        <input type="password" class="form-control" value="<?php echo $user_password; ?>" name="user_password">
+        <input type="password" class="form-control" value="" name="user_password">
     </div>
 
     <div class="form-group">

@@ -3,7 +3,7 @@
 if (isset($_POST['create_post'])) {
 
     $post_title = escape($_POST['title']);
-    $post_user = escape($_POST['post_user']);
+    $post_author = escape($_POST['post_author']);
     $post_category_id = escape($_POST['post_category_id']);
     $post_status = escape($_POST['post_status']);
 
@@ -20,7 +20,7 @@ if (isset($_POST['create_post'])) {
     $query = "INSERT INTO posts(
               post_category_id,
               post_title,
-              post_user,
+              post_author,
               post_date,
               post_image,
               post_content,
@@ -29,7 +29,7 @@ if (isset($_POST['create_post'])) {
               VALUES (
             '{$post_category_id}',
             '{$post_title}',
-            '{$post_user}',
+            '{$post_author}',
             now(),
             '{$post_image}',
             '{$post_content}',
@@ -72,14 +72,14 @@ if (isset($_POST['create_post'])) {
     <!--        <input type="text" class="form-control" name="author">-->
     <!--    </div>-->
     <div class="form-group">
-        <label for="post_user">Users</label>
-        <select name="post_user" id="">
+        <label for="post_author">authors</label>
+        <select name="post_author" id="">
             <?php
-            $query = "SELECT * FROM users";
-            $select_users = mysqli_query($connection, $query);
+            $query = "SELECT * FROM authors";
+            $select_authors = mysqli_query($connection, $query);
             //            confirmQuery($select_author);
-            while ($row = mysqli_fetch_assoc($select_users)) {
-                $user_id = $row['user_id'];
+            while ($row = mysqli_fetch_assoc($select_authors)) {
+                $author_id = $row['author_id'];
                 $username = $row['username'];
 
                 echo "<option value='{$username}'>{$username}</option>";

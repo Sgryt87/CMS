@@ -1,4 +1,5 @@
 <?php include 'includes/db.php'; ?>
+<?php session_start(); ?>
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navigation.php'; ?>
 
@@ -9,12 +10,11 @@
 
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-
             <?php
 
             if (isset($_POST['submit'])) {
-                echo $search = escape($_POST['search']);
 
+                $search = escape($_POST['search']);
                 $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
                 $search_query = mysqli_query($connection, $query);
 
@@ -35,7 +35,7 @@
                         ?>
 
                         <h1 class="page-header">
-                            Page Heading
+                            <?php echo $search;?>
                             <small>Secondary Text</small>
                         </h1>
 
@@ -62,7 +62,6 @@
             }
 
             ?>
-
 
         </div>
 

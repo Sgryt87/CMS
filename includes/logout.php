@@ -1,5 +1,7 @@
-<?php session_start(); ?>
 <?php
+session_start();
+ob_start();
+
     $_SESSION['username'] = null;
     $_SESSION['user_firstname'] = null;
     $_SESSION['user_lastname'] = null;

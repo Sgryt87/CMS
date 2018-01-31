@@ -91,7 +91,7 @@
                         $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $the_comment_id";
                         $approve_comment_query = mysqli_query($connection, $query);
                         confirmQuery($approve_comment_query);
-                        header("Location: post_comments.php?id=" . $_GET['id'] . "");
+                        header("Location: post_comments.php?id=" . escape($_GET['id']) . "");
                     }
 
                     if (isset($_GET['unapprove'])) {

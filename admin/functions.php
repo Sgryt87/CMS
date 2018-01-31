@@ -90,4 +90,63 @@ function users_online()
 }
 
 users_online();
+
+function recordCount($cell)
+{
+    global $connection;
+    $query = "SELECT * FROM $cell";
+    $select_all = mysqli_query($connection, $query);
+    confirmQuery($select_all);
+    return $count = mysqli_num_rows($select_all);
+}
+
+function checkStatus($table, $cell, $status)
+{
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $cell = '$status'";
+    $select_all = mysqli_query($connection, $query);
+    confirmQuery($select_all);
+    return $count = mysqli_num_rows($select_all);
+}
+
+function isAdmin($username = '')
+{
+    global $connection;
+    $query = "SELECT user_role FROM users WHERE username = '$username'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    $row = mysqli_fetch_array($result);
+    if ($row['user_role'] === 'admin') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function usernameExists($username)
+{
+    global $connection;
+    $query = "SELECT username FROM users WHERE username = '$username'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function emailExists($email)
+{
+    global $connection;
+    $query = "SELECT user_email FROM users WHERE user_email = '$email'";
+    $result = mysqli_query($connection, $query);
+    confirmQuery($result);
+    if (mysqli_num_rows($result) > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 ?>

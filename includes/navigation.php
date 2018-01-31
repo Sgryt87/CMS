@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -23,17 +22,33 @@
 
                 while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
                     $cat_title = $row['cat_title'];
-                    echo "<li><a href='#'>{$cat_title}</a></li>";
+                    $cat_id = $row['cat_id'];
+                    $cat_class = '';
+                    $reg_class = '';
+                    $cont_class = '';
+                    $current_page = basename($_SERVER['PHP_SELF']);
+                    $reg_page = 'registration.php';
+                    $cont_page = 'contact.php';
+
+                    if (isset($_GET['category']) && $_GET['category'] === $cat_id) {
+                        $cat_class = 'active_class';
+                    } else if ($current_page === $reg_page) {
+                        $reg_class = 'active_class';
+                    }else if ($current_page === $cont_page) {
+                        $cont_class = 'active_class';
+                    }
+
+                    echo "<li><a href='category.php?category={$cat_id}' class='$cat_class'>{$cat_title}</a></li>";
                 }
                 ?>
                 <li>
                     <a href="admin">Admin</a>
                 </li>
                 <li>
-                    <a href="registration.php">Registration</a>
+                    <a href="registration.php" class="<?php echo $reg_class;?>">Registration</a>
                 </li>
-                   <li>
-                    <a href="contact.php">Contact</a>
+                <li>
+                    <a href="contact.php" class="<?php echo $cont_class;?>">Contact</a>
                 </li>
 
                 <?php
@@ -45,9 +60,6 @@
                 }
                 ?>
 
-                <!--                <li>-->
-                <!--                    <a href="#">Contact</a>-->
-                <!--                </li>-->
 
             </ul>
 
